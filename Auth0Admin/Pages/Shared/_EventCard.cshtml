@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<a asp-page="/Event" asp-route-id=@Model.Id>
+    <div class="event-card">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="is-size-4 has-text-weight-bold">@Model.Name</h2>
+                <small class="event-date">@Model.Date</small>
+                <span>@Model.Location</span>
+            </div>
+        </div>
+    </div>
+</a>

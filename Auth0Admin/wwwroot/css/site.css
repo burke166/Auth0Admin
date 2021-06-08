@@ -1,0 +1,24 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+body {
+    font-family: 'Avenir', Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+nav {
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+    nav > a {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    nav > a:active {
+        color: #d88d00;
+    }

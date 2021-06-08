@@ -1,0 +1,57 @@
+﻿@page "{Id:int}"
+@model Auth0Admin.Pages.EventModel
+@{
+}
+
+<div class="event-single">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    @Model.Event.Name
+                </h1>
+                <h2 class="subtitle ">
+                    <strong>Date:</strong> @Model.Event.Date
+                    <br />
+                    <strong>Time:</strong> @Model.Event.Time
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="event-content">
+        <div class="container">
+            <p class="is-size-4 description">@Model.Event.Description</p>
+            <p class="is-size-4"><strong>Location:</strong> @Model.Event.Location</p>
+            <p class="is-size-4"><strong>Category:</strong> @Model.Event.Category</p>
+            <div class="event-images columns is-multiline has-text-centered">
+                @foreach (string imageUrl in Model.Event.ImageUrls)
+                {
+                    <div class="column is-one-third">
+                        <img src="@imageUrl" alt="@Model.Event.Name" />
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Styles {
+    <style>
+        .event-single {
+            margin-top: 30px;
+        }
+
+        .hero {
+            margin-bottom: 70px;
+        }
+
+        .event-images {
+            margin-top: 50px;
+        }
+
+        .description {
+            margin-bottom: 30px;
+        }
+    </style>
+}
