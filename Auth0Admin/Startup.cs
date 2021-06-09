@@ -59,11 +59,6 @@ namespace Auth0Admin
 
                 options.CallbackPath = new PathString("/signin-auth0");
                 options.ClaimsIssuer = "Auth0";
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = @"https://schemas.investigatorphone.com/roles"
-                };
 
                 options.Events = new OpenIdConnectEvents
                 {
@@ -120,6 +115,7 @@ namespace Auth0Admin
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

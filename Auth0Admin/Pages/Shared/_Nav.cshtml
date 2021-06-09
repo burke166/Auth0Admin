@@ -23,9 +23,19 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-dark">
-                        <strong>Sign In</strong>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="/Logout" class="button is-dark">
+                            <strong>Log Out</strong>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-page="/Login" class="button is-dark">
+                            <strong>Sign In</strong>
+                        </a>
+                    }
+
                 </div>
             </div>
         </div>

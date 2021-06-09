@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Auth0Admin.Data;
 
 namespace Auth0Admin.Pages
 {
+    [Authorize]
     [BindProperties(SupportsGet = true)]
     public class EventModel : PageModel
     {
