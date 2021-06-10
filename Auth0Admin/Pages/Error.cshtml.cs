@@ -11,9 +11,11 @@ namespace Auth0Admin.Pages
 {
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     [IgnoreAntiforgeryToken]
+    [BindProperties(SupportsGet = true)]
     public class ErrorModel : PageModel
     {
         public string RequestId { get; set; }
+        public int Id { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 

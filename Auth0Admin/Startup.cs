@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Globalization;
-using System.IO;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +38,7 @@ namespace Auth0Admin
             .AddCookie(options =>
             {
                 options.LoginPath = "/Login";
+                options.AccessDeniedPath = "/Error";
             })
             .AddOpenIdConnect("Auth0", options =>
             {
@@ -59,6 +54,12 @@ namespace Auth0Admin
 
                 options.CallbackPath = new PathString("/signin-auth0");
                 options.ClaimsIssuer = "Auth0";
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = Configuration["Auth0:RoleClaimType"]
+                };
 
                 options.Events = new OpenIdConnectEvents
                 {
@@ -117,6 +118,8 @@ namespace Auth0Admin
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseEndpoints(endpoints =>
             {
