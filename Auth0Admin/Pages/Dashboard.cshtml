@@ -1,0 +1,49 @@
+﻿@page
+@model Auth0Admin.Pages.DashboardModel
+@{
+}
+
+<div class="container">
+    <h2 class="title is-size-3 has-text-centered">Welcome to your dashboard</h2>
+    <div class="columns" v-if="message">
+        <div class="column is-one-quarter is-offset-8">
+            @if (!string.IsNullOrWhiteSpace(Model.Message))
+            {
+                <div class="notification is-success">
+                    @Model.Message
+                </div>
+            }
+
+        </div>
+    </div>
+        <div class="columns is-multiline has-text-centered">
+            @foreach (var user in Model.Users)
+            {
+                    <div class="column is-one-quarter">
+                        <img src="@user.Picture" alt="@user.FullName" style="width:200px;margin-left:auto;margin-right:auto;" />
+                        <h3 class="is-size-6">Name: @user.FullName</h3>
+                        <h3 class="is-size-6">Email: @user.Email</h3>
+                        <h3 class="is-size-6">Last login: @user.LastLogin.Value.ToShortDateString()</h3>
+                        <h3 class="is-size-6">Login count: @user.LoginsCount</h3>
+                        <form method="post">
+                            <input type="hidden" asp-for="Id" value="@user.UserId" />
+                            <input type="submit" class="button is-medium is-danger" value="Delete me 😵" />
+                        </form>
+                    </div>
+            }
+        </div>
+</div>
+
+@section Styles {
+<style>
+    .notification {
+        position: fixed;
+        top: 800px;
+        right: 40px;
+    }
+
+    .button {
+        margin-top: 15px;
+    }
+</style>
+}

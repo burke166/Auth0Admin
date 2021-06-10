@@ -11,6 +11,8 @@
 appsettings.Development.json
 appsettings.json
 nlog.config
+
+# Don't upload database
 *.db
 
 # User-specific files (MonoDevelop/Xamarin Studio)

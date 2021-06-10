@@ -19,13 +19,27 @@
         <div class="navbar-start">
             <a asp-page="/Index" class="navbar-item">Home</a>
             <a asp-page="/About" class="navbar-item">About</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-page="/Dashboard" class="navbar-item">User Dashboard</a>
+            }
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-dark">
-                        <strong>Sign In</strong>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-page="/Logout" class="button is-dark">
+                            <strong>Log Out</strong>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-page="/Login" class="button is-dark">
+                            <strong>Sign In</strong>
+                        </a>
+                    }
+
                 </div>
             </div>
         </div>

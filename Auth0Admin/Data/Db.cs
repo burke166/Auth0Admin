@@ -6,6 +6,7 @@ namespace Auth0Admin.Data
     public class Db : DbContext
     {
         public DbSet<EventInfo> Events { get; set; }
+        public DbSet<AccessToken> Tokens { get; set; }
 
         public Db(DbContextOptions opt) : base(opt)
         {
@@ -15,6 +16,9 @@ namespace Auth0Admin.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<AccessToken>()
+                .ToTable("Tokens");
 
             builder.Entity<EventInfo>()
                 .ToTable("Events")
